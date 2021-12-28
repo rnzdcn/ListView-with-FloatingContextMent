@@ -4,20 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
     tools:context=".EditCarName">
 
     <TextView
+        android:textColor="#fbfbfb"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="34sp"
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="Edit name of the car"
-        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
 
     <EditText
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:fontFamily="@font/poppins_light"
+        android:textColor="#fbfbfb"
         android:id="@+id/editCarName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,8 +38,11 @@
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:background="@drawable/button_bg"
+        android:id="@+id/updateBtn"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="Update"
@@ -40,12 +51,15 @@
         app:layout_constraintTop_toBottomOf="@+id/editCarName" />
 
     <Button
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:background="@drawable/secondary_bg"
         android:id="@+id/cancelBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="Cancel"
-        app:layout_constraintEnd_toEndOf="@+id/button"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintEnd_toEndOf="@+id/updateBtn"
+        app:layout_constraintStart_toStartOf="@+id/updateBtn"
+        app:layout_constraintTop_toBottomOf="@+id/updateBtn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

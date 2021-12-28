@@ -1,5 +1,8 @@
 package com.example.listviewactivity;
 
+import static com.example.listviewactivity.ViewCarList.carList;
+
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,10 +13,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-
 public class MainActivity extends AppCompatActivity {
-
-    static ArrayList<String> carList = new ArrayList<String>();
 
     Button addBtn , viewBtn;
     EditText input;

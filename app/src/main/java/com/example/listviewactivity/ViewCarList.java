@@ -2,8 +2,6 @@ package com.example.listviewactivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -12,19 +10,18 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import java.text.BreakIterator;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ViewCarList extends AppCompatActivity {
 
     ListView listView;
     Button backBtn;
-    ArrayAdapter<String> arrayAdapter;
+    static ArrayAdapter<String> arrayAdapter;
+    static ArrayList<String> carList = new ArrayList<String>();
+    static Integer index;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,19 +29,16 @@ public class ViewCarList extends AppCompatActivity {
 
         listView = findViewById(R.id.listViewLayout);
 
-        String[] cars;
-        cars = MainActivity.carList.toArray(new String[MainActivity.carList.size()]);
-
-        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, cars);
+        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, carList);
         listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                index = i;
                 registerForContextMenu(listView);
             }
         });
-
 
         backBtn = findViewById(R.id.backBtn);
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -56,14 +50,8 @@ public class ViewCarList extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
-
-    @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-
         getMenuInflater().inflate(R.menu.action_menu, menu);
     }
 
@@ -74,16 +62,24 @@ public class ViewCarList extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.edit:
-                Toast.makeText(this, "Edit Selected", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(ViewCarList.this, EditCarName.class);
-                startActivity(intent);
+                String edit = carList.get(info.position).toString();
+                Intent i = new Intent(ViewCarList.this, EditCarName.class);
+                i.putExtra("editCar", edit);
+                Toast.makeText(this, "You Selected " + carList.get(info.position), Toast.LENGTH_SHORT).show();
+                startActivity(i);
                 return true;
             case R.id.delete:
-//                arrayAdapter.remove(arrayAdapter.getItem(info.position));
-//                arrayAdapter.notifyDataSetChanged();
+                carList.remove(info.position);
+                arrayAdapter.notifyDataSetChanged();
+                Toast.makeText(this, "You deleted the car from your list ", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onContextItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
