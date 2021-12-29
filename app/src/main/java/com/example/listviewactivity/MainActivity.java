@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     Button addBtn , viewBtn;
-    EditText input;
+    static EditText input;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                globalVar.input = input.getText().toString();
+                String userInput = input.getText().toString();
                 Toast.makeText(getApplicationContext(), "Successfully Added", Toast.LENGTH_SHORT).show();
-                carList.add(globalVar.input);
+                carList.add(userInput);
                 input.setText(" ");
             }
         });
