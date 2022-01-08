@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String userInput = input.getText().toString();
-                Toast.makeText(getApplicationContext(), "Successfully Added", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Your car was added successfully", Toast.LENGTH_SHORT).show();
                 carList.add(userInput);
                 input.setText(" ");
             }
